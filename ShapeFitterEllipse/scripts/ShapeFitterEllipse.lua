@@ -30,7 +30,6 @@ print('AppEngine Version: ' .. Engine.getVersion())
 local DELAY = 750 -- ms between visualization steps for demonstration purpose
 
 local viewer = View.create()
-viewer:setID('viewer2D')
 
 -- Cyan color scheme for search regions and points
 local searchDecoration = View.ShapeDecoration.create()
