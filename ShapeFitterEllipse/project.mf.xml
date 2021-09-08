@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <manifest>
     <application name="ShapeFitterEllipse">
         <crown name="ShapeFitterEllipse">
@@ -7,22 +7,10 @@
         </crown>
         <meta key="author">AppSpace Sample</meta>
         <meta key="version">2.5.0</meta>
-        <meta key="licensed">false</meta>
         <meta key="priority">low</meta>
         <meta key="tags">Image,Algorithm,Measurement</meta>
         <meta key="read-protected">false</meta>
         <meta key="copy-protected">false</meta>
-        <entry path="pages" default="AppSpaceViewers-2.4.0.1.msdd">
-            <file type="application/zip">AppSpaceViewers-2.4.0.1.msdd</file>
-        </entry>
-        <entry path="resources">
-            <file type="image">ellipse01.png</file>
-            <file type="image">ellipse02.png</file>
-            <file type="image">ellipse03.png</file>
-            <file type="image">ellipse04.png</file>
-        </entry>
-        <entry path="scripts" default="ShapeFitterEllipse.lua">
-            <file type="text/x-lua">ShapeFitterEllipse.lua</file>
-        </entry>
+        <entry default="ShapeFitterEllipse.lua" path="scripts"/>
     </application>
 </manifest>
