@@ -5,26 +5,19 @@ print('AppEngine Version: ' .. Engine.getVersion())
 
 local DELAY = 750 -- ms between visualization steps for demonstration purpose
 
-local viewer = View.create("viewer2D1")
+local viewer = View.create()
 
 -- Cyan color scheme for search regions and points
-local searchDecoration = View.ShapeDecoration.create()
-searchDecoration:setFillColor(0, 255, 255, 0)
-searchDecoration:setLineColor(0, 255, 255)
-searchDecoration:setLineWidth(3)
-searchDecoration:setPointSize(9)
+local searchDecoration = View.ShapeDecoration.create():setFillColor(0, 255, 255, 0)
+searchDecoration:setLineColor(0, 255, 255):setLineWidth(3):setPointSize(9)
 
 -- Green color scheme for fitted lines and circles using ransac.
-local foundDecoration = View.ShapeDecoration.create()
-foundDecoration:setFillColor(0, 255, 0, 40)
-foundDecoration:setLineColor(0, 255, 0)
-foundDecoration:setLineWidth(5)
-foundDecoration:setPointSize(9)
+local foundDecoration = View.ShapeDecoration.create():setFillColor(0, 255, 0, 40)
+foundDecoration:setLineColor(0, 255, 0):setLineWidth(5):setPointSize(9)
 
 -- Red color scheme for outlier points
 local outlierDecoration = View.ShapeDecoration.create()
-outlierDecoration:setLineColor(255, 0, 0)
-outlierDecoration:setPointSize(9)
+outlierDecoration:setLineColor(255, 0, 0):setPointSize(9)
 
 -- Create shape fitter. Set fit mode to RANSAC to be robust against outliers.
 -- Use fewer probes to do a faster fit.
@@ -60,25 +53,19 @@ local function main()
 
     -- Show fitting results, show only image first.
     viewer:clear()
-    local imgViewId = viewer:addImage(image)
+    viewer:addImage(image)
     viewer:present()
     Script.sleep(DELAY) -- for demonstration purpose only
 
     -- Draw search region, points and fitted ellipse.
-    viewer:addShape(searchArea, searchDecoration, nil, imgViewId)
+    viewer:addShape(searchArea, searchDecoration)
     viewer:addShape(
       Shape.createCircle(searchArea:getCenterOfGravity(), searchAreaInnerRadius),
-      searchDecoration,
-      nil,
-      imgViewId
+      searchDecoration
     )
-    viewer:addShape(foundEllipse, foundDecoration, nil, imgViewId)
-    for _, pt in ipairs(inliers) do
-      viewer:addShape(pt, searchDecoration, nil, imgViewId)
-    end
-    for _, pt in ipairs(outliers) do
-      viewer:addShape(pt, outlierDecoration, nil, imgViewId)
-    end
+    viewer:addShape(foundEllipse, foundDecoration)
+    viewer:addShape(inliers, searchDecoration)
+    viewer:addShape(outliers, outlierDecoration)
     viewer:present()
     Script.sleep(3 * DELAY) -- for demonstration purpose only
   end
